@@ -18,7 +18,7 @@
 
   <view class='bigChoose'>
     <view class='kind'>
-    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+     <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}" custom-item="{{customItem}}">
       <image src='../../mock/images/icon/index_998.png' class='bigicon'></image>
     </picker>
     </view>
@@ -45,335 +45,195 @@
 <swiper current="{{currentTab}}" duration="200" bindchange="swiperChange" style='height:562rpx;'>  
     <swiper-item>  
       <scroll-view scroll-y='true' style="height: 562rpx;">
-          <view class='message-buy' bindtap='toBuy'>
+        <block wx:for="{{freeBusinessesList}}" wx:for-index="index" >
+          <view class="{{item.type==1?'message-buy':'message-sell'}}" bindtap="{{item.type==1?'toBuy':'toSellers'}}" data-history="{{index}}" data-id="{{item.fb_id}}">
             <view class='mesheader'>
-              <view class='sbkind'><image src='../../mock/images/icon/index_19.png' class='iconsellbuy'></image><view class='meskind'>玉米</view>
+              <view class='sbkind'>
+              <block wx:if="{{item.type==1}}">
+              <image src='../../mock/images/icon/index_19.png' class='iconsellbuy'></image>
+              </block>
+              <block wx:else>
+              <image src='../../mock/images/icon/index_29.png' class='iconsellbuy'></image>
+              </block>
+
+              <view class='meskind'>{{item.category}}</view>
               </view>
-              <view class='sbprice'><image src='../../mock/images/icon/index_22.png' class='icon-bprice'></image><view class='mes-bprice'>1400元/吨       </view> 
-            </view>
+              <view class='sbprice'>
+              <block wx:if="{{item.type==1}}">
+              <image src='../../mock/images/icon/index_22.png' class='icon-bprice'></image>
+              </block>
+              <block wx:else>
+              <image src='../../mock/images/icon/index_30.png' class='iconsellbuy'></image>
+              </block>
+              <view class="{{item.type==1?'mes-bprice':'mes-sprice'}}">{{item.price}}元/{{item.unit}}</view> 
+              </view>
             </view>
             <view class='mescontent'>
-            <view class='mctop'>
-              <view class='brand'><text class='mes' decode='true'>品&emsp;牌：</text><text class='mestext'>东北玉米</text></view>
-              <view class='quantity'><text class='mes' decode='true'>数量：</text><text class='mestext'>1000吨</text></view>
-            </view>
-            <view class='mcmid'>
-              <view class='del-place'><text class='mes' decode='true'>交货地：</text><text class='mestext'>黑龙江省哈尔滨市</text></view>
-              <view class='norms'><text class='mes' decode='true'>规格：</text><text class='mestext'>水份1.0</text></view>
-            </view>
-            <view class='mcbottom'>
-              <view class='mcbleft'><image class='onlinebuy' src='../../mock/images/icon/index_78.png'></image>
-              <image class='personal' src='../../mock/images/icon/index_40.png'></image>
-              <image class='realname' src='../../mock/images/icon/index_41.png'></image>
+              <view class='mctop'>
+                <view class='brand'><text class='mes' decode='true'>品&emsp;牌：</text><text class='mestext'>{{item.brand}}</text></view>
+                <view class='quantity'><text class='mes' decode='true'>数量：</text><text class='mestext'>{{item.amount}}{{item.unit}}</text></view>
               </view>
-              <view class='mcbright'>
-              <image class='time' src='../../mock/images/icon/index_48.png'></image><text class='mestext'>今天15:19</text>
+              <view class='mcmid'>
+                <view class='del-place'><text class='mes' decode='true'>交货地：</text><text class='mestext'>{{item.place}}</text></view>
+                <view class='norms'><text class='mes' decode='true'>规格：</text><text class='mestext'>{{item.standard}}</text></view>
               </view>
-            </view>
+              <view class='mcbottom'>
+                <view class='mcbleft'>
+                  <block wx:if="{{item.type==1}}">
+                    <image class='onlinebuy' src='../../mock/images/icon/index_78.png'></image>
+                    <image class='personal' src='../../mock/images/icon/index_40.png'></image>
+                    <image class='realname' src='../../mock/images/icon/index_41.png'></image>
+                  </block>
+                  <block wx:else>
+                    <image class='onlinebuy' src='../../mock/images/icon/index_59.png'></image>
+                    <image class='personal' src='../../mock/images/icon/index_44.png'></image>
+                    <image class='realname' src='../../mock/images/icon/index_36.png'></image>
+                  </block>
+                </view>
+                <view class='mcbright'>
+                  <image class='time' src='../../mock/images/icon/index_48.png'></image><text class='mestext'>{{item.create_time}}</text>
+                </view>
+              </view>
             </view>
           </view>
-          <view class='message-sell' bindtap='toSellers'>
-            <view class='mesheader'>
-              <view class='sbkind'><image src='../../mock/images/icon/index_29.png' class='iconsellbuy'></image><view class='meskind'>玉米</view>
-              </view>
-              <view class='sbprice'><image src='../../mock/images/icon/index_30.png' class='icon-bprice'></image><view class='mes-sprice'>1400元/吨       </view> 
-            </view>
-            </view>
-            <view class='mescontent'>
-            <view class='mctop'>
-              <view class='brand'><text class='mes' decode='true'>品&emsp;牌：</text><text class='mestext'>东北玉米</text></view>
-              <view class='quantity'><text class='mes' decode='true'>数量：</text><text class='mestext'>1000吨</text></view>
-            </view>
-            <view class='mcmid'>
-              <view class='del-place'><text class='mes' decode='true'>交货地：</text><text class='mestext'>黑龙江省哈尔滨市</text></view>
-              <view class='norms'><text class='mes' decode='true'>规格：</text><text class='mestext'>水份1.0</text></view>
-            </view>
-            <view class='mcbottom'>
-              <view class='mcbleft'><image class='onlinebuy' src='../../mock/images/icon/index_59.png'></image>
-              <image class='personal' src='../../mock/images/icon/index_44.png'></image>
-              <image class='realname' src='../../mock/images/icon/index_45.png'></image>
-              </view>
-              <view class='mcbright'>
-              <image class='time' src='../../mock/images/icon/index_48.png'></image><text class='mestext'>今天15:19</text>
-              </view>
-            </view>
-            </view>
-          </view>
-          <view class='message-sell' bindtap='toSellers'>
-            <view class='mesheader'>
-              <view class='sbkind'><image src='../../mock/images/icon/index_29.png' class='iconsellbuy'></image><view class='meskind'>玉米</view>
-              </view>
-              <view class='sbprice'><image src='../../mock/images/icon/index_30.png' class='icon-bprice'></image><view class='mes-sprice'>1400元/吨       </view> 
-            </view>
-            </view>
-            <view class='mescontent'>
-            <view class='mctop'>
-              <view class='brand'><text class='mes' decode='true'>品&emsp;牌：</text><text class='mestext'>东北玉米</text></view>
-              <view class='quantity'><text class='mes' decode='true'>数量：</text><text class='mestext'>1000吨</text></view>
-            </view>
-            <view class='mcmid'>
-              <view class='del-place'><text class='mes' decode='true'>交货地：</text><text class='mestext'>黑龙江省哈尔滨市</text></view>
-              <view class='norms'><text class='mes' decode='true'>规格：</text><text class='mestext'>水份1.0</text></view>
-            </view>
-            <view class='mcbottom'>
-              <view class='mcbleft'><image class='onlinebuy' src='../../mock/images/icon/index_59.png'></image>
-              <image class='personal' src='../../mock/images/icon/index_44.png'></image>
-              <image class='realname' src='../../mock/images/icon/index_36.png'></image>
-              </view>
-              <view class='mcbright'>
-              <image class='time' src='../../mock/images/icon/index_48.png'></image><text class='mestext'>今天15:19</text>
-              </view>
-            </view>
-            </view>
-          </view>
-          <view class='message-buy'bindtap='toBuy'>
-            <view class='mesheader'>
-              <view class='sbkind'><image src='../../mock/images/icon/index_19.png' class='iconsellbuy'></image><view class='meskind'>苹果</view>
-              </view>
-              <view class='sbprice'><image src='../../mock/images/icon/index_22.png' class='icon-bprice'></image><view class='mes-bprice'>1400元/吨       </view> 
-            </view>
-            </view>
-            <view class='mescontent'>
-            <view class='mctop'>
-              <view class='brand'><text class='mes' decode='true'>品&emsp;牌：</text><text class='mestext'>新疆苹果</text></view>
-              <view class='quantity'><text class='mes' decode='true'>数量：</text><text class='mestext'>1000吨</text></view>
-            </view>
-            <view class='mcmid'>
-              <view class='del-place'><text class='mes' decode='true'>交货地：</text><text class='mestext'>新疆省乌鲁木齐市</text></view>
-              <view class='norms'><text class='mes' decode='true'>规格：</text><text class='mestext'>非常甜.</text></view>
-            </view>
-            <view class='mcbottom'>
-              <view class='mcbleft'><image class='onlinebuy' src='../../mock/images/icon/index_78.png'></image>
-              <image class='personal' src='../../mock/images/icon/index_40.png'></image>
-              <image class='realname' src='../../mock/images/icon/index_36.png'></image>
-              </view>
-              <view class='mcbright'>
-              <image class='time' src='../../mock/images/icon/index_48.png'></image><text class='mestext'>今天15:19</text>
-              </view>
-            </view>
-            </view>
-          </view>
+        </block>
       </scroll-view>
     </swiper-item>  
    
     <swiper-item>  
-      <scroll-view scroll-y='true' style="height: 562rpx;">
-          <view class='message-buy' bindtap='toBuy'>
+       <scroll-view scroll-y='true' style="height: 562rpx;">
+        <block wx:for="{{freeBusinessesList}}" wx:for-index="index" >
+          <view class="{{item.type==1?'message-buy':'message-sell'}}" bindtap="{{item.type==1?'toBuy':'tosellers'}}" data-history="{{index}}">
             <view class='mesheader'>
-              <view class='sbkind'><image src='../../mock/images/icon/index_19.png' class='iconsellbuy'></image><view class='meskind'>玉米</view>
+              <view class='sbkind'>
+              <block wx:if="{{item.type==1}}">
+              <image src='../../mock/images/icon/index_19.png' class='iconsellbuy'></image>
+              </block>
+              <block wx:else>
+              <image src='../../mock/images/icon/index_29.png' class='iconsellbuy'></image>
+              </block>
+
+              <view class='meskind'>{{item.category}}</view>
               </view>
-              <view class='sbprice'><image src='../../mock/images/icon/index_22.png' class='icon-bprice'></image><view class='mes-bprice'>1400元/吨       </view> 
-            </view>
+              <view class='sbprice'>
+              <block wx:if="{{item.type==1}}">
+              <image src='../../mock/images/icon/index_22.png' class='icon-bprice'></image>
+              </block>
+              <block wx:else>
+              <image src='../../mock/images/icon/index_30.png' class='iconsellbuy'></image>
+              </block>
+              <view class="{{item.type==1?'mes-bprice':'mes-sprice'}}">{{item.price}}元/{{item.unit}}</view> 
+              </view>
             </view>
             <view class='mescontent'>
-            <view class='mctop'>
-              <view class='brand'><text class='mes' decode='true'>品&emsp;牌：</text><text class='mestext'>东北玉米</text></view>
-              <view class='quantity'><text class='mes' decode='true'>数量：</text><text class='mestext'>1000吨</text></view>
-            </view>
-            <view class='mcmid'>
-              <view class='del-place'><text class='mes' decode='true'>交货地：</text><text class='mestext'>黑龙江省哈尔滨市</text></view>
-              <view class='norms'><text class='mes' decode='true'>规格：</text><text class='mestext'>水份1.0</text></view>
-            </view>
-            <view class='mcbottom'>
-              <view class='mcbleft'><image class='onlinebuy' src='../../mock/images/icon/index_78.png'></image>
-              <image class='personal' src='../../mock/images/icon/index_40.png'></image>
-              <image class='realname' src='../../mock/images/icon/index_41.png'></image>
+              <view class='mctop'>
+                <view class='brand'><text class='mes' decode='true'>品&emsp;牌：</text><text class='mestext'>{{item.brand}}</text></view>
+                <view class='quantity'><text class='mes' decode='true'>数量：</text><text class='mestext'>{{item.amount}}{{item.unit}}</text></view>
               </view>
-              <view class='mcbright'>
-              <image class='time' src='../../mock/images/icon/index_48.png'></image><text class='mestext'>{{time}}</text>
+              <view class='mcmid'>
+                <view class='del-place'><text class='mes' decode='true'>交货地：</text><text class='mestext'>{{item.place}}</text></view>
+                <view class='norms'><text class='mes' decode='true'>规格：</text><text class='mestext'>{{item.standard}}</text></view>
               </view>
-            </view>
+              <view class='mcbottom'>
+                <view class='mcbleft'>
+                  <block wx:if="{{item.type==1}}">
+                    <image class='onlinebuy' src='../../mock/images/icon/index_78.png'></image>
+                    <image class='personal' src='../../mock/images/icon/index_40.png'></image>
+                    <image class='realname' src='../../mock/images/icon/index_41.png'></image>
+                  </block>
+                  <block wx:else>
+                    <image class='onlinebuy' src='../../mock/images/icon/index_59.png'></image>
+                    <image class='personal' src='../../mock/images/icon/index_44.png'></image>
+                    <image class='realname' src='../../mock/images/icon/index_36.png'></image>
+                  </block>
+                </view>
+                <view class='mcbright'>
+                  <image class='time' src='../../mock/images/icon/index_48.png'></image><text class='mestext'>{{item.create_time}}</text>
+                </view>
+              </view>
             </view>
           </view>
-          <view class='message-sell'>
-            <view class='mesheader'>
-              <view class='sbkind'><image src='../../mock/images/icon/index_29.png' class='iconsellbuy'></image><view class='meskind'>玉米</view>
-              </view>
-              <view class='sbprice'><image src='../../mock/images/icon/index_30.png' class='icon-bprice'></image><view class='mes-sprice'>1400元/吨       </view> 
-            </view>
-            </view>
-            <view class='mescontent'>
-            <view class='mctop'>
-              <view class='brand'><text class='mes' decode='true'>品&emsp;牌：</text><text class='mestext'>东北玉米</text></view>
-              <view class='quantity'><text class='mes' decode='true'>数量：</text><text class='mestext'>1000吨</text></view>
-            </view>
-            <view class='mcmid'>
-              <view class='del-place'><text class='mes' decode='true'>交货地：</text><text class='mestext'>黑龙江省哈尔滨市</text></view>
-              <view class='norms'><text class='mes' decode='true'>规格：</text><text class='mestext'>水份1.0</text></view>
-            </view>
-            <view class='mcbottom'>
-              <view class='mcbleft'><image class='onlinebuy' src='../../mock/images/icon/index_59.png'></image>
-              <image class='personal' src='../../mock/images/icon/index_44.png'></image>
-              <image class='realname' src='../../mock/images/icon/index_45.png'></image>
-              </view>
-              <view class='mcbright'>
-            <image class='time' src='../../mock/images/icon/index_48.png'></image><text class='mestext'>{{time}}</text>
-              </view>
-            </view>
-            </view>
-          </view>
-          <view class='message-sell'>
-            <view class='mesheader'>
-              <view class='sbkind'><image src='../../mock/images/icon/index_29.png' class='iconsellbuy'></image><view class='meskind'>玉米</view>
-              </view>
-              <view class='sbprice'><image src='../../mock/images/icon/index_30.png' class='icon-bprice'></image><view class='mes-sprice'>1400元/吨       </view> 
-            </view>
-            </view>
-            <view class='mescontent'>
-            <view class='mctop'>
-              <view class='brand'><text class='mes' decode='true'>品&emsp;牌：</text><text class='mestext'>东北玉米</text></view>
-              <view class='quantity'><text class='mes' decode='true'>数量：</text><text class='mestext'>1000吨</text></view>
-            </view>
-            <view class='mcmid'>
-              <view class='del-place'><text class='mes' decode='true'>交货地：</text><text class='mestext'>黑龙江省哈尔滨市</text></view>
-              <view class='norms'><text class='mes' decode='true'>规格：</text><text class='mestext'>水份1.0</text></view>
-            </view>
-            <view class='mcbottom'>
-              <view class='mcbleft'><image class='onlinebuy' src='../../mock/images/icon/index_59.png'></image>
-              <image class='personal' src='../../mock/images/icon/index_44.png'></image>
-              <image class='realname' src='../../mock/images/icon/index_36.png'></image>
-              </view>
-              <view class='mcbright'>
-              <image class='time' src='../../mock/images/icon/index_48.png'></image><text class='mestext'>{{time}}</text>
-              </view>
-            </view>
-            </view>
-          </view>
-          <view class='message-buy'>
-            <view class='mesheader'>
-              <view class='sbkind'><image src='../../mock/images/icon/index_19.png' class='iconsellbuy'></image><view class='meskind'>苹果</view>
-              </view>
-              <view class='sbprice'><image src='../../mock/images/icon/index_22.png' class='icon-bprice'></image><view class='mes-bprice'>1400元/吨       </view> 
-            </view>
-            </view>
-            <view class='mescontent'>
-            <view class='mctop'>
-              <view class='brand'><text class='mes' decode='true'>品&emsp;牌：</text><text class='mestext'>新疆苹果</text></view>
-              <view class='quantity'><text class='mes' decode='true'>数量：</text><text class='mestext'>1000吨</text></view>
-            </view>
-            <view class='mcmid'>
-              <view class='del-place'><text class='mes' decode='true'>交货地：</text><text class='mestext'>新疆省乌鲁木齐市</text></view>
-              <view class='norms'><text class='mes' decode='true'>规格：</text><text class='mestext'>非常甜.</text></view>
-            </view>
-            <view class='mcbottom'>
-              <view class='mcbleft'><image class='onlinebuy' src='../../mock/images/icon/index_78.png'></image>
-              <image class='personal' src='../../mock/images/icon/index_40.png'></image>
-              <image class='realname' src='../../mock/images/icon/index_36.png'></image>
-              </view>
-              <view class='mcbright'>
-              <image class='time' src='../../mock/images/icon/index_48.png'></image><text class='mestext'>{{time}}</text>
-              </view>
-            </view>
-            </view>
-          </view>
-      </scroll-view>  
+        </block>
+      </scroll-view>
     </swiper-item>  
     
+    
+    <swiper-item>  
+        <scroll-view scroll-y='true' style="height: 562rpx;">
+            <block wx:for="{{history}}" wx:for-index="index" >
+                    <view class="{{item.type==1?'message-buy':'message-sell'}}" bindtap="{{item.type==1?'toBuy':'tosellers'}}" data-history="{{index}}">
+                <view class='mesheader'>
+                  <view class='sbkind'>
+                  <block wx:if="{{item.type==1}}">
+                  <image src='../../mock/images/icon/index_19.png' class='iconsellbuy'></image>
+                  </block>
+                  <block wx:else>
+                  <image src='../../mock/images/icon/index_29.png' class='iconsellbuy'></image>
+                  </block>
+
+                  <view class='meskind'>{{item.category}}</view>
+                  </view>
+                  <view class='sbprice'>
+                  <block wx:if="{{item.type==1}}">
+                  <image src='../../mock/images/icon/index_22.png' class='icon-bprice'></image>
+                  </block>
+                  <block wx:else>
+                  <image src='../../mock/images/icon/index_30.png' class='iconsellbuy'></image>
+                  </block>
+                  <view class="{{item.type==1?'mes-bprice':'mes-sprice'}}">{{item.price}}元/{{item.unit}}</view> 
+                  </view>
+                </view>
+                <view class='mescontent'>
+                  <view class='mctop'>
+                    <view class='brand'><text class='mes' decode='true'>品&emsp;牌：</text><text class='mestext'>{{item.brand}}</text></view>
+                    <view class='quantity'><text class='mes' decode='true'>数量：</text><text class='mestext'>{{item.amount}}{{item.unit}}</text></view>
+                  </view>
+                  <view class='mcmid'>
+                    <view class='del-place'><text class='mes' decode='true'>交货地：</text><text class='mestext'>{{item.place}}</text></view>
+                    <view class='norms'><text class='mes' decode='true'>规格：</text><text class='mestext'>{{item.standard}}</text></view>
+                  </view>
+                  <view class='mcbottom'>
+                    <view class='mcbleft'>
+                      <block wx:if="{{item.type==1}}">
+                        <image class='onlinebuy' src='../../mock/images/icon/index_78.png'></image>
+                        <image class='personal' src='../../mock/images/icon/index_40.png'></image>
+                        <image class='realname' src='../../mock/images/icon/index_41.png'></image>
+                      </block>
+                      <block wx:else>
+                        <image class='onlinebuy' src='../../mock/images/icon/index_59.png'></image>
+                        <image class='personal' src='../../mock/images/icon/index_44.png'></image>
+                        <image class='realname' src='../../mock/images/icon/index_36.png'></image>
+                      </block>
+                    </view>
+                    <view class='mcbright'>
+                      <image class='time' src='../../mock/images/icon/index_48.png'></image><text class='mestext'>{{item.create_time}}</text>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </block>
+        </scroll-view>  
+    </swiper-item>  
+  
     <swiper-item>  
       <scroll-view scroll-y='true' style="height: 562rpx;">
-          <view class='message-sell'>
+      <block wx:for="{{freeBusinessesList}}" wx:for-index="index">
+           <view class='message-buy'  wx:if='{{item.type==1}} ' bindtap='toBuy'
+           data-history="{{index}}">
             <view class='mesheader'>
-              <view class='sbkind'><image src='../../mock/images/icon/index_29.png' class='iconsellbuy'></image><view class='meskind'>玉米</view>
+              <view class='sbkind'><image src='../../mock/images/icon/index_19.png' class='iconsellbuy'></image><view class='meskind'>{{item.category}}</view>
               </view>
-              <view class='sbprice'><image src='../../mock/images/icon/index_30.png' class='icon-bprice'></image><view class='mes-sprice'>1400元/吨       </view> 
+              <view class='sbprice'><image src='../../mock/images/icon/index_22.png' class='icon-bprice'></image><view class='mes-bprice'>{{item.price}}元/{{item.unit}}</view> 
             </view>
             </view>
             <view class='mescontent'>
             <view class='mctop'>
-              <view class='brand'><text class='mes' decode='true'>品&emsp;牌：</text><text class='mestext'>东北玉米</text></view>
-              <view class='quantity'><text class='mes' decode='true'>数量：</text><text class='mestext'>1000吨</text></view>
+              <view class='brand'><text class='mes' decode='true'>品&emsp;牌：</text><text class='mestext'>{{item.brand}}</text></view>
+              <view class='quantity'><text class='mes' decode='true'>数量：</text><text class='mestext'>{{item.amount}}{{item.unit}}</text></view>
             </view>
             <view class='mcmid'>
-              <view class='del-place'><text class='mes' decode='true'>交货地：</text><text class='mestext'>黑龙江省哈尔滨市</text></view>
-              <view class='norms'><text class='mes' decode='true'>规格：</text><text class='mestext'>水份1.0</text></view>
-            </view>
-            <view class='mcbottom'>
-              <view class='mcbleft'><image class='onlinebuy' src='../../mock/images/icon/index_59.png'></image>
-              <image class='personal' src='../../mock/images/icon/index_44.png'></image>
-              <image class='realname' src='../../mock/images/icon/index_45.png'></image>
-              </view>
-              <view class='mcbright'>
-            <image class='time' src='../../mock/images/icon/index_48.png'></image><text class='mestext'>今天15：19</text>
-              </view>
-            </view>
-            </view>
-          </view>
-          
-          <view class='message-sell'>
-            <view class='mesheader'>
-              <view class='sbkind'><image src='../../mock/images/icon/index_29.png' class='iconsellbuy'></image><view class='meskind'>玉米</view>
-              </view>
-              <view class='sbprice'><image src='../../mock/images/icon/index_30.png' class='icon-bprice'></image><view class='mes-sprice'>1400元/吨       </view> 
-            </view>
-            </view>
-            <view class='mescontent'>
-            <view class='mctop'>
-              <view class='brand'><text class='mes' decode='true'>品&emsp;牌：</text><text class='mestext'>东北玉米</text></view>
-              <view class='quantity'><text class='mes' decode='true'>数量：</text><text class='mestext'>1000吨</text></view>
-            </view>
-            <view class='mcmid'>
-              <view class='del-place'><text class='mes' decode='true'>交货地：</text><text class='mestext'>黑龙江省哈尔滨市</text></view>
-              <view class='norms'><text class='mes' decode='true'>规格：</text><text class='mestext'>水份1.0</text></view>
-            </view>
-            <view class='mcbottom'>
-              <view class='mcbleft'><image class='onlinebuy' src='../../mock/images/icon/index_59.png'></image>
-              <image class='personal' src='../../mock/images/icon/index_44.png'></image>
-              <image class='realname' src='../../mock/images/icon/index_36.png'></image>
-              </view>
-              <view class='mcbright'>
-              <image class='time' src='../../mock/images/icon/index_48.png'></image><text class='mestext'>今天15：19</text>
-              </view>
-            </view>
-            </view>
-          </view>
-
-          <view class='message-sell'>
-            <view class='mesheader'>
-              <view class='sbkind'><image src='../../mock/images/icon/index_29.png' class='iconsellbuy'></image><view class='meskind'>玉米</view>
-              </view>
-              <view class='sbprice'><image src='../../mock/images/icon/index_30.png' class='icon-bprice'></image><view class='mes-sprice'>1400元/吨       </view> 
-            </view>
-            </view>
-            <view class='mescontent'>
-            <view class='mctop'>
-              <view class='brand'><text class='mes' decode='true'>品&emsp;牌：</text><text class='mestext'>东北玉米</text></view>
-              <view class='quantity'><text class='mes' decode='true'>数量：</text><text class='mestext'>1000吨</text></view>
-            </view>
-            <view class='mcmid'>
-              <view class='del-place'><text class='mes' decode='true'>交货地：</text><text class='mestext'>黑龙江省哈尔滨市</text></view>
-              <view class='norms'><text class='mes' decode='true'>规格：</text><text class='mestext'>水份1.0</text></view>
-            </view>
-            <view class='mcbottom'>
-              <view class='mcbleft'><image class='onlinebuy' src='../../mock/images/icon/index_59.png'></image>
-              <image class='personal' src='../../mock/images/icon/index_44.png'></image>
-              <image class='realname' src='../../mock/images/icon/index_45.png'></image>
-              </view>
-              <view class='mcbright'>
-            <image class='time' src='../../mock/images/icon/index_48.png'></image><text class='mestext'>{{time}}</text>
-              </view>
-            </view>
-            </view>
-          </view>
-      </scroll-view>    
-    </swiper-item>       
-   
-    <swiper-item>
-     <scroll-view scroll-y='true' style="height: 562rpx;">
-          <view class='message-buy' bindtap='toBuy'>
-            <view class='mesheader'>
-              <view class='sbkind'><image src='../../mock/images/icon/index_19.png' class='iconsellbuy'></image><view class='meskind'>玉米</view>
-              </view>
-              <view class='sbprice'><image src='../../mock/images/icon/index_22.png' class='icon-bprice'></image><view class='mes-bprice'>1400元/吨       </view> 
-            </view>
-            </view>
-            <view class='mescontent'>
-            <view class='mctop'>
-              <view class='brand'><text class='mes' decode='true'>品&emsp;牌：</text><text class='mestext'>东北玉米</text></view>
-              <view class='quantity'><text class='mes' decode='true'>数量：</text><text class='mestext'>1000吨</text></view>
-            </view>
-            <view class='mcmid'>
-              <view class='del-place'><text class='mes' decode='true'>交货地：</text><text class='mestext'>黑龙江省哈尔滨市</text></view>
-              <view class='norms'><text class='mes' decode='true'>规格：</text><text class='mestext'>水份1.0</text></view>
+              <view class='del-place'><text class='mes' decode='true'>交货地：</text><text class='mestext'>{{item.place}}</text></view>
+              <view class='norms'><text class='mes' decode='true'>规格：</text><text class='mestext'>{{item.standard}}</text></view>
             </view>
             <view class='mcbottom'>
               <view class='mcbleft'><image class='onlinebuy' src='../../mock/images/icon/index_78.png'></image>
@@ -381,86 +241,34 @@
               <image class='realname' src='../../mock/images/icon/index_41.png'></image>
               </view>
               <view class='mcbright'>
-              <image class='time' src='../../mock/images/icon/index_48.png'></image><text class='mestext'>{{time}}</text>
+              <image class='time' src='../../mock/images/icon/index_48.png'></image><text class='mestext'>{{item.create_time}}</text>
               </view>
             </view>
             </view>
-          </view>
-          <view class='message-buy'>
-            <view class='mesheader'>
-              <view class='sbkind'><image src='../../mock/images/icon/index_19.png' class='iconsellbuy'></image><view class='meskind'>苹果</view>
-              </view>
-              <view class='sbprice'><image src='../../mock/images/icon/index_22.png' class='icon-bprice'></image><view class='mes-bprice'>1400元/吨       </view> 
-            </view>
-            </view>
-            <view class='mescontent'>
-            <view class='mctop'>
-              <view class='brand'><text class='mes' decode='true'>品&emsp;牌：</text><text class='mestext'>新疆苹果</text></view>
-              <view class='quantity'><text class='mes' decode='true'>数量：</text><text class='mestext'>1000吨</text></view>
-            </view>
-            <view class='mcmid'>
-              <view class='del-place'><text class='mes' decode='true'>交货地：</text><text class='mestext'>新疆省乌鲁木齐市</text></view>
-              <view class='norms'><text class='mes' decode='true'>规格：</text><text class='mestext'>非常甜.</text></view>
-            </view>
-            <view class='mcbottom'>
-              <view class='mcbleft'><image class='onlinebuy' src='../../mock/images/icon/index_78.png'></image>
-              <image class='personal' src='../../mock/images/icon/index_40.png'></image>
-              <image class='realname' src='../../mock/images/icon/index_36.png'></image>
-              </view>
-              <view class='mcbright'>
-              <image class='time' src='../../mock/images/icon/index_48.png'></image><text class='mestext'>{{time}}</text>
-              </view>
-            </view>
-            </view>
-          </view>
-      </scroll-view>  
-    </swiper-item>
+          </view> 
+      </block>
+      </scroll-view>
+    </swiper-item>  
    
    
     <swiper-item>  
-            <scroll-view scroll-y='true' style="height: 562rpx;">
-          <view class='message-sell'>
+             <scroll-view scroll-y='true' style="height: 562rpx;">
+      <block wx:for="{{freeBusinessesList}}" wx:for-index="index">
+          <view class='message-sell' wx:if='{{item.type==2}}'  bindtap='tosellers'>
             <view class='mesheader'>
-              <view class='sbkind'><image src='../../mock/images/icon/index_29.png' class='iconsellbuy'></image><view class='meskind'>玉米</view>
+              <view class='sbkind'><image src='../../mock/images/icon/index_29.png' class='iconsellbuy'></image><view class='meskind'>{{item.category}}</view>
               </view>
-              <view class='sbprice'><image src='../../mock/images/icon/index_30.png' class='icon-bprice'></image><view class='mes-sprice'>1400元/吨       </view> 
+              <view class='sbprice'><image src='../../mock/images/icon/index_30.png' class='icon-bprice'></image><view class='mes-sprice'>{{item.price}}元/{{item.unit}}</view> 
             </view>
             </view>
             <view class='mescontent'>
             <view class='mctop'>
-              <view class='brand'><text class='mes' decode='true'>品&emsp;牌：</text><text class='mestext'>东北玉米</text></view>
-              <view class='quantity'><text class='mes' decode='true'>数量：</text><text class='mestext'>1000吨</text></view>
+              <view class='brand'><text class='mes' decode='true'>品&emsp;牌：</text><text class='mestext'>{{item.brand}}</text></view>
+              <view class='quantity'><text class='mes' decode='true'>数量：</text><text class='mestext'>{{item.amount}}{{item.unit}}</text></view>
             </view>
             <view class='mcmid'>
-              <view class='del-place'><text class='mes' decode='true'>交货地：</text><text class='mestext'>黑龙江省哈尔滨市</text></view>
-              <view class='norms'><text class='mes' decode='true'>规格：</text><text class='mestext'>水份1.0</text></view>
-            </view>
-            <view class='mcbottom'>
-              <view class='mcbleft'><image class='onlinebuy' src='../../mock/images/icon/index_59.png'></image>
-              <image class='personal' src='../../mock/images/icon/index_44.png'></image>
-              <image class='realname' src='../../mock/images/icon/index_45.png'></image>
-              </view>
-              <view class='mcbright'>
-            <image class='time' src='../../mock/images/icon/index_48.png'></image><text class='mestext'>{{time}}</text>
-              </view>
-            </view>
-            </view>
-          </view>
-          <view class='message-sell'>
-            <view class='mesheader'>
-              <view class='sbkind'><image src='../../mock/images/icon/index_29.png' class='iconsellbuy'></image><view class='meskind'>玉米</view>
-              </view>
-              <view class='sbprice'><image src='../../mock/images/icon/index_30.png' class='icon-bprice'></image><view class='mes-sprice'>1400元/吨       </view> 
-            </view>
-            </view>
-            <view class='mescontent'>
-            <view class='mctop'>
-              <view class='brand'><text class='mes' decode='true'>品&emsp;牌：</text><text class='mestext'>东北玉米</text></view>
-              <view class='quantity'><text class='mes' decode='true'>数量：</text><text class='mestext'>1000吨</text></view>
-            </view>
-            <view class='mcmid'>
-              <view class='del-place'><text class='mes' decode='true'>交货地：</text><text class='mestext'>黑龙江省哈尔滨市</text></view>
-              <view class='norms'><text class='mes' decode='true'>规格：</text><text class='mestext'>水份1.0</text></view>
+              <view class='del-place'><text class='mes' decode='true'>交货地：</text><text class='mestext'>{{item.place}}</text></view>
+              <view class='norms'><text class='mes' decode='true'>规格：</text><text class='mestext'>{{item.standard}}</text></view>
             </view>
             <view class='mcbottom'>
               <view class='mcbleft'><image class='onlinebuy' src='../../mock/images/icon/index_59.png'></image>
@@ -468,13 +276,15 @@
               <image class='realname' src='../../mock/images/icon/index_36.png'></image>
               </view>
               <view class='mcbright'>
-              <image class='time' src='../../mock/images/icon/index_48.png'></image><text class='mestext'>{{time}}</text>
+              <image class='time' src='../../mock/images/icon/index_48.png'></image><text class='mestext'>{{item.create_time}}</text>
               </view>
             </view>
             </view>
           </view>
-      </scroll-view>   
+      </block>
+      </scroll-view>
     </swiper-item>  
   </swiper>  
+
 
 

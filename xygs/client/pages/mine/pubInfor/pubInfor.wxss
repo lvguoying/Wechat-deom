@@ -228,3 +228,8 @@ page{
   height: 40rpx; 
 }
 /*buy_footer  end  */
+
+/* update by csan        time: 5.5 10:25 */
+.recommend_category_message>.category_right>view:last-of-type{
+  margin-right: 0
+}

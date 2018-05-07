@@ -7,24 +7,23 @@
   <view class="person">
     <image class="person-avatar" src="../../mock/images/rich/avatar.jpg"></image>
     <view class="person-info">
-      <view class="person-name">李维嘉</view>
-      <view class="type">综合经营</view>
+      <view class="person-name">李维嘉<text class="type">综合经营</text></view>
     </view>
     <view class="person-server">
       <view class="p-server-item">
-        <image src="../../mock/images/index_40.png" class="p-server-icon"></image>
+        <image src="../../mock/images/rich/icon_31.png" class="p-server-icon"></image>
         <text class="p-server-name">个人</text>
       </view>
       <view class="p-server-item">
-        <image src="../../mock/images/index_41.png" class="p-server-icon"></image>
+        <image src="../../mock/images/rich/icon_32.png" class="p-server-icon"></image>
         <text class="p-server-name">实名认证</text>
       </view>
       <view class="p-server-item">
-        <image src="../../mock/images/index_19.png" class="p-server-icon"></image>
+        <image src="../../mock/images/rich/icon_33.png" class="p-server-icon"></image>
         <text class="p-server-name">无央会员</text>
       </view>
       <view class="p-server-item">
-        <image src="../../mock/images/index_22.png" class="p-server-icon"></image>
+        <image src="../../mock/images/rich/icon_34.png" class="p-server-icon"></image>
         <text class="p-server-name">贸易商</text>
       </view>
 
@@ -34,33 +33,27 @@
   <scroll-view class="server-list" scroll-x="true">
     <view class="server-item">
       <view class="server-icon-wrap">
-        <image src='../../mock/images/rich/yiliao.svg' class="server-icon"></image>
+        <image src='../../mock/images/rich/icon_40.png' class="server-icon"></image>
       </view>
       <view class="server-name">医疗服务</view>
     </view>
     <view class="server-item">
       <view class="server-icon-wrap">
-        <image src='../../mock/images/rich/lvshi.svg' class="server-icon"></image>
+        <image src='../../mock/images/rich/icon_43.png' class="server-icon"></image>
       </view>
       <view class="server-name">律师服务</view>
     </view>
     <view class="server-item">
       <view class="server-icon-wrap">
-        <image src='../../mock/images/rich/baoxian.svg' class="server-icon"></image>
+        <image src='../../mock/images/rich/icon_45.png' class="server-icon"></image>
       </view>
       <view class="server-name">保险服务</view>
     </view>
     <view class="server-item">
       <view class="server-icon-wrap">
-        <image src='../../mock/images/rich/nongji.svg' class="server-icon"></image>
+        <image src='../../mock/images/rich/icon_47.png' class="server-icon"></image>
       </view>
       <view class="server-name">农具服务</view>
-    </view>
-    <view class="server-item">
-      <view class="server-icon-wrap">
-        <image src='../../mock/images/rich/bank.svg' class="server-icon"></image>
-      </view>
-      <view class="server-name">银行服务</view>
     </view>
     
 
@@ -69,31 +62,30 @@
   <view class="suggestion">
     <!-- <view class="suggestion-title">提出建议</view> -->
     <form bindsubmit="bindFormSubmit">
-      <textarea class="suggestion-content" disabled='{{textDisabled}}'></textarea>
-      <button class="rich-rule" catchtap="showRichRule">致富规则</button>
+      <textarea textarea fixed="true" wx:if="{{textDisabled}}" bindblur="textareaBlur" class="suggestion-content" placeholder="请输入需求 ... ..." name="suggetion" value="{{suggetionContent}}"></textarea>
+      <view class="mock-textarea" wx:else></view>
+      <!-- <button class="rich-rule" plain=" " type="primary" catchtap="showRichRule">致富规则</button> -->
       <button class="rich-submit" form-type="submit">提交</button>
     </form>
   </view>
+  <view class="rich-rule">还不了解致富规则？<text class="font-color" catchtap="showRichRule">立即了解</text></view>
   <!-- 弹出框(致富规则) -->
-  <view hidden="{{richRuleShow}}">
-
+  <view catch:touchmove='catch' hidden="{{richRuleShow}}" class="a">
     <view class="rule-content">
-      <view class="rule-title">致富规则</view>
-      <scroll-view class="rule-policy" scroll-y>
-        <view class="policy-item">我是一条文本， 嘿嘿.....</view>
-        <view class="policy-item">我是一条文本， 嘿嘿.....</view>
-        <view class="policy-item">我是一条文本， 嘿嘿.....</view>
-        <view class="policy-item">我是一条文本， 嘿嘿.....</view>
-        <view class="policy-item">我是一条文本， 嘿嘿.....</view>
-        <view class="policy-item">我是一条文本， 嘿嘿.....</view>
-        <view class="policy-item">我是一条文本， 嘿嘿.....</view>
-
-
+      <!-- <view class="rule-title">致富规则</view> -->
+      <image src="../../mock/images/rich/myrich_icon_03.png" class="rule-image"></image><scroll-view class="rule-policy" scroll-y>
+        <view class="policy-item"><view class="policy-item-index">1</view>我是一条文本, 嘻嘻.....</view>
+        <view class="policy-item"><view class="policy-item-index">2</view>我是一条文本, 嘻嘻.....</view>
+        <view class="policy-item"><view class="policy-item-index">3</view>我是一条大了扩大考虑到卡卡的卡里的阿德....</view>
+        <view class="policy-item"><view class="policy-item-index">4</view>我是一条文本, 嘻嘻.....</view>
+        <view class="policy-item"><view class="policy-item-index">55</view>我是一条文本, 嘻嘻.....</view>
+        <view class="policy-item"><view class="policy-item-index">6</view>我是一条文本, 嘻嘻.....</view>
+        <view class="policy-item"><view class="policy-item-index">8</view>我是一条文本, 嘻嘻.....</view>
       </scroll-view>
-      <button catchtap="hideRichRule" class="close">关闭</button>
+      <!-- <button catchtap="hideRichRule" class="close">关闭</button> -->
+      <view class="close" catchtap="hideRichRule"><text>我了解了</text></view>
     </view>
-    <view class="mask">
-
-    </view>
+    <!-- 遮罩层 -->
+    <view class="mask"></view>
   </view>
 </template>

@@ -30,4 +30,5 @@
   line-height: 100rpx;
   font-size: 28rpx;
   background-color: #7fc7a1; 
+  color: #fff;
 }

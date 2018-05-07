@@ -7,9 +7,13 @@ Page({
     // myrich
     myrich:{
       richRuleShow: false,
-      textDisabled: true
+      textDisabled: false,
+      suggetionContent: "",
+      defaultContent: "",
+      //传过来的数据
+      myWtorich:null
     },
-    
+    // suggetionContent: "",
 
     multiIndex: [0, 0, 0],
     date: '2016-09-01',
@@ -17,27 +21,42 @@ Page({
     region: ['黑龙江省', '哈尔滨市','通河县'],
     customItem: '全部'
   },
+  
+  bindFormSubmit(e) {
+    var str = "myrich.suggetionContent"
+    // 获取需求
+    var suggestion = e.detail.value.suggestion;
+    this.setData({
+      [str]: ""
+    });
+    // console.log(myrich);
+    wx.showModal({
+      title: '提交成功...'
+    })
+  },
   // 弹出框的显示隐藏
   hideRichRule() {
     var richRuleShow = true;
-    var textDisabled = false;
-    var myrich = {
-      richRuleShow,
-      textDisabled
-    };
+    var textDisabled = true;
+
     this.setData({
-      myrich
+      ["myrich.richRuleShow"]: richRuleShow,
+      ["myrich.textDisabled"]: textDisabled
+    });
+  },
+  textareaBlur(e) {
+    var suggetionContent = e.detail.value;
+    this.setData({
+      ['myrich.suggetionContent']: suggetionContent
     });
   },
   showRichRule(){
     var richRuleShow = false;
-    var textDisabled = true;
-    var myrich = {
-      richRuleShow,
-      textDisabled
-    };
+    var textDisabled = false;
+
     this.setData({
-      myrich
+      ["myrich.richRuleShow"]: richRuleShow,
+      ["myrich.textDisabled"]: textDisabled
     });
   },
   navbarTap: function (e) {
@@ -49,5 +68,8 @@ Page({
     this.setData({
       region: e.detail.value
     })
+  },
+  catch:function(){
+    
   }
 })

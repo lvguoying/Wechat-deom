@@ -1,14 +1,23 @@
 <view class='container'>
-  <view class='order'>订单已完成</view>
-    <view class='total'>
-      <view>获取积分：{{achieve}}</view>
-      <view>当前积分：{{crurrent}}</view>
-      <view>总积分：{{total}}</view>
-    </view>
+  <view class='banner'>
+    <view class='order'>订单完成</view>
+    <image class='header' src='../../../mock/images/green.png'>
+    <view class='all'>总积分：{{total}}</view>
+    </image>
+  </view>
+
       <view class='award'>
-      <navigator url='../money/money'><button>积分抽奖</button></navigator>
-      <navigator url='../exchange/exchange'><button>积分兑换</button></navigator>
+        <view class='exchange'>
+          <navigator url='../exchange/exchange' hover-class='none'>
+          <image class='draw' src='../../../mock/images/draw.png'></image>积分兑换        </navigator>
+        </view>
+
+        <view class='check-detail'>
+          <navigator url='../exchange/exchange' hover-class='none'>
+          <image class='detail' src='../../../mock/images/detail.png'></image>查看明细        </navigator>
+        </view>
       </view>
+
         <view class='rule'>
           <text>
           <text class='title'>积分规则：</text>

@@ -1,7 +1,7 @@
-/* swiper start */
 page{
   font-size: 28rpx;
 }
+/* swiper start */
 .swiper{
   margin-bottom: 40rpx;
 }
@@ -114,13 +114,14 @@ page{
   background-color: #7fc7a1;
   color: #fff;
   border-radius: 8rpx;
+  margin-top: 0;
 }
 .sellers_Information_auto{
   font-size:28rpx;
 }
 .sellers_auto_img{
-   width: 35rpx;
-  height: 35rpx; 
+   width: 33rpx;
+  height: 33rpx; 
   vertical-align: middle;
 }
 .auto_message{
@@ -145,12 +146,12 @@ page{
   margin-bottom: 20rpx;
 }
 .recommend_category{
-  height: 300rpx;
+  height: 350rpx;
   border: 1px solid #ccc;
   margin-bottom: 30rpx;
 }
 .recommend_category_title{
-   background-color: #e3e1e1; 
+  background-color: #e3e1e1; 
   display: flex;
   flex-direction: row ;
   justify-content: space-between; 
@@ -182,13 +183,13 @@ page{
   padding: 14rpx;
 }
 .category_left_message{
-  margin: 30rpx;
+  margin: 30rpx 5rpx;
 }
 .category_left_message icon{
   vertical-align: middle
 }
 .category_line3{
-  margin-left: 30rpx;
+  margin-left: 5rpx;
   display: flex;
   flex-direction: row;
 }
@@ -201,35 +202,69 @@ page{
 .category_line3_left{
   margin-right: 40rpx; 
 }
-.category_line3_left image{
-  border-right: 1px solid #3285ff;
-}
 .category_line3_right image{
-  margin-left: 15rpx;
+  margin-left: 10rpx;
 }
 /* recommend_Information  end */
 
 /*buy_footer  start  */
 .buy_footer{
-  /* margin: 0 30rpx; */
   position: fixed;
   bottom: 0rpx;
   width: 100%;
   display: flex;
+  height: 80rpx;
 }
-.buy_footer view{
-  /* width: 30%; */
+.buy_footer_box1,.buy_footer_box2,.buy_footer_box3{
   flex: 1;
   height: 80rpx;
   line-height: 80rpx;
   text-align: center;
-  float: left;
+  /* float: left; */
   border-right: 1px solid #fff;
-  color: #fff;
-  background-color: #7fc7a1
 }
 .buy_footer view:last-child{
   border: none;
+}
+.buy_footer .buy_footer_box1{
+   color:  #bbbbbb;
+   background-color: #f9f9f9; 
+   /* padding-left: 50rpx; */
+}
+.buy_footer{
+  font-size: 32rpx;
+  /* padding-right: 40rpx; */
+}
+.buy_footer_box1{
+  display: flex;
+  height: 80rpx;
+}
+.im{
+  height: 40rpx;
+  width: 40rpx;
+}
+.kf{
+  flex-grow: 1;
+}
+.buy_kf,.buy_sc{
+  font-size: 28rpx;
+  flex-grow: 1;
+  /* display: inline-block; */
+}
+.bfb1{
+  flex-grow: 1;
+  height: 80rpx;
+  /* display: flex;
+  flex-direction: column;  */
+}
+
+.buy_footer_box2{
+  color: #fff;
+  background-color: #7fc7a1
+}
+.buy_footer_box3{
+  color: #fff;
+  background-color: #68a283
 }
 .sellers_name, .sellers_type{
   font-size: 28rpx;

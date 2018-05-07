@@ -1,0 +1,24 @@
+<!--pages/order/showOrder/showOrder.wxml-->
+<view class="orderBar">
+    <view class="left">玉米订单</view>
+    <view class="right">中粮订单</view>
+</view>
+<view class="order-contant">
+    <view class="order-name">
+        <view class="order-name-meg">
+                <image src="../../../mock/images/order/huiyuan2.png">图标</image>
+                <view>牡丹江合作社</view><text>吕国营</text>
+        </view>
+
+        <view class="order-border"></view>
+
+        
+            <view class="order-meg">
+                <view>拥有土地</view><text>300亩</text>
+                <view>卖出价格</view><text>1000元/吨</text>
+            </view>
+    </view>
+
+    <view></view>
+    <view></view>
+</view>

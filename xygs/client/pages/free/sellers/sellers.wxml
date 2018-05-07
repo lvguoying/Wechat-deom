@@ -18,21 +18,21 @@
          <image     class="detail_nav_img"src="../../../mock/images/index_29.png" mode="aspectFill">    </image>
       </block>
     </view>
-    <view class='product_detail_name'>玉米</view>
-    <view class='product_detail_price'>￥1400元/吨</view>
+    <view class='product_detail_name'>{{dataDetail.category}}</view>
+    <view class='product_detail_price'>￥{{dataDetail.price}}元/吨</view>
   </view>
   <view class='product_detail_message'>
     <view class='message_type'>
-      品牌：东北玉米
+      品牌：{{dataDetail.brand}}
     </view>
     <view class='message_count'>
-      数量：2000kg
+      数量：{{dataDetail.amount}}kg
     </view>
     <view class='message_site'>
-      交货地：黑龙江省 哈尔滨市宁安县
+      交货地：{{dataDetail.place}}
     </view>
     <view class='message_time'>
-      规格：自然干玉米水分14，霉变0.5，容重760
+      规格：{{dataDetail.status}}
     </view>
   </view>
   <view class='product_detail_time'>
@@ -41,7 +41,7 @@
         <icon type="waiting" size="20" color='#3fc1f5'/>
       </block>
     </view>
-    {{time}}
+    {{dataDetail.creat_time}}
   </view>
 </view>
 <!--buy_product_detail end  -->
@@ -280,7 +280,7 @@
           </view>
           <view class='category_line3_right'>
             <image class="sellers_auto_img"mode="aspectFill"src="../../../mock/images/index_44.png"></image>
-          <image class="sellers_auto_img"mode="aspectFill"src="./../../mock/images/index_45.png"></image>   
+          <image class="sellers_auto_img"mode="aspectFill"src="../../../mock/images/index_45.png"></image>   
           </view>     
         </view>       
        </view>

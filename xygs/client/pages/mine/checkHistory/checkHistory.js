@@ -1,100 +1,119 @@
-// pages/mine/pubInfor/pubInfor.js
-var util = require('../../../utils/util.js');
+var app = getApp()
+var iutil = require('../../../utils/util');
 
 Page({
-  // <navigator url= 'pubInfor/pubInfor' > 发布的信息 < /navigator>
-  /**
-   * 页面的初始数据
-   */
   data: {
-    bol: 1,
-    blocks: [{
-      name: "玉米",
-      price: '1400',
-      brand: '黑土地',
-      address: '黑龙江省哈尔滨市...'
-    }, {
-      name: '红薯',
-      price: '200',
-      brand: '红薯',
-      address: '河北省唐山市...'
-    }, {
-      name: '苹果',
-      price: '155',
-      brand: '富士',
-      address: '山东省临沂市...'
-    }, {
-      name: '苹果',
-      price: '155',
-      brand: '富士',
-      address: '黑龙江省哈尔滨市...'
-    }]
+    history: [],
+    startX: 0, //开始坐标
+    startY: 0,
+    openid: "",
+  },
+  onLoad: function () {
+    var that = this;
+    wx.login({
+        success: function (res) {
+          if (res.code) {
+            //发起网络请求
+            wx.request({
+              url: `https://api.weixin.qq.com/sns/jscode2session?appid=wx10031d2233afbcba&secret=759c54e1f897391b2f9bfb07a0fb66fd&js_code=${res.code}&grant_type=authorization_code`,
+              success: function (res) {
+                that.setData({
+                  openid: res.data.openid
+                })
+              }
+            })
+          } else {
+            console.log('登录失败！' + res.errMsg)
+          }
+        }
+      }),
+      wx.request({
+        url: iutil.APP_HOST + `my/findhis?user_oid=${that.data.openid}`,
+        success: function (res) {
+          that.setData({
+            history: res.data.freeBusinessesList
+          })
+          console.log(res.data.freeBusinessesList)
+          console.log(that.data.history);
+          
+        }
+
+      })
+
+
+      // content:history,
+      isTouchMove: false //默认全隐藏删除
+   
+
+    // that.setData({
+    //   history: that.data.history
+    // })
+    // console.log(this.data.history);
+    
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    // 调用函数时，传入new Date()参数，返回值是日期和时间  
-    var time = util.formatTime(new Date());
-    // 再通过setData更改Page()里面的data，动态更新页面的数据 
-    var date = new Date();
-    var hour = date.getHours();
-    var minute = date.getMinutes();
-    var hourMinute = hour + ':' + minute;
+  //手指触摸动作开始 记录起点X坐标
+  touchstart: function (e) {
+    //开始触摸时 重置所有删除
+    this.data.history.forEach(function (v, i) {
+      if (v.isTouchMove) //只操作为true的
+        v.isTouchMove = false;
+    })
     this.setData({
-      time: time,
-      hourMinute: hourMinute
-    });
-    console.log(this.data.hourMinute);
+      startX: e.changedTouches[0].clientX,
+      startY: e.changedTouches[0].clientY,
+      history: this.data.history
+    })
+    console.log(this.data.history);
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  //滑动事件处理
+  touchmove: function (e) {
+    var that = this,
+      index = e.currentTarget.dataset.index, //当前索引
+      startX = that.data.startX, //开始X坐标
+      startY = that.data.startY, //开始Y坐标
+      touchMoveX = e.changedTouches[0].clientX, //滑动变化坐标
+      touchMoveY = e.changedTouches[0].clientY, //滑动变化坐标
+      //获取滑动角度
+      angle = that.angle({
+        X: startX,
+        Y: startY
+      }, {
+        X: touchMoveX,
+        Y: touchMoveY
+      });
+    that.data.history.forEach(function (v, i) {
+      v.isTouchMove = false
+      //滑动超过30度角 return
+      if (Math.abs(angle) > 30) return;
+      if (i == index) {
+        if (touchMoveX > startX) //右滑
+          v.isTouchMove = false
+        else //左滑
+          v.isTouchMove = true
+      }
+    })
+    //更新数据
+    that.setData({
+      history: that.data.history
+    })
   },
-
   /**
-   * 生命周期函数--监听页面显示
+   * 计算滑动角度
+   * @param {Object} start 起点坐标
+   * @param {Object} end 终点坐标
    */
-  onShow: function () {
-
+  angle: function (start, end) {
+    var _X = end.X - start.X,
+      _Y = end.Y - start.Y
+    //返回角度 /Math.atan()返回数字的反正切值
+    return 360 * Math.atan(_Y / _X) / (2 * Math.PI);
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  //删除事件
+  del: function (e) {
+    this.data.history.splice(e.currentTarget.dataset.index, 1)
+    this.setData({
+      history: this.data.history
+    })
   }
 })

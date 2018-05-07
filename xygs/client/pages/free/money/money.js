@@ -1,6 +1,23 @@
 // pages/free/money/money.js
 Page({
   data: {
+    array:[{
+      prize:'150积分',
+      time:'2018-04-28',
+      state:'领取'
+    },
+    {
+      prize: '20元话费',
+      time: '2018-04-12',
+      state: '已领取'
+    },
+    {
+      prize: '100元话费',
+      time: '2018-03-15',
+      state: '已领取'
+    },
+
+    ],
     circleList: [],//圆点数组
     awardList: [],//奖品数组
     colorCircleFirst: '#FFDF2F',//圆点颜色1

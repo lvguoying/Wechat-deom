@@ -1,12 +1,13 @@
 // pages/free/integral/integral.js
+// var util = require('../../utils/util.js'); 
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    achieve:'800',
-    crurrent:'2200',
     total:'3000',
-  }
+  },
+  // onLoad:function(){
+  //   var that = this;
+  //   wx.request({
+  //     url: iutil.APP_HOST+'',
+  //   })
+  // }
 })

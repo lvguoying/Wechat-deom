@@ -1,4 +1,5 @@
 // pages/mine/means/personal/personal.js
+var util = require('../../../../utils/util.js');
 Page({
 
   /**
@@ -6,24 +7,73 @@ Page({
    */
   data: {
     name: '',
-    region: ['黑龙江', '哈尔滨', '香坊区'],
     detailed: '',
+    region: ['黑龙江', '哈尔滨', '香坊区'],
+    customItem: '全部',
+    place: ''
   },
+  getPhoneNumber: function (e) {
+    console.log(e.detail.errMsg)
+    console.log(e.detail.iv)
+    console.log(e.detail.encryptedData)
+  } ,
   sendMsg:function(){
     wx.showToast({
       title: '提交成功',
     })
   },
+  cityCancel: function () {
+    this.address.cityCancel()
+  },
+  citySure: function () {
+    this.address.citySure()
+    console.log(this.address.data)    
+  },
+  selectDistrict: function () {
+    this.address.selectDistrict()
+  },
+  cityChange() {
+    this.address.cityChange()
+  },
+  saveName: function(e){
+    this.setData({
+      name: e.detail.value
+    })
+    // console.log(this.data.name);
+  },
   bindRegionChange: function (e) {
     this.setData({
       region: e.detail.value
+    })
+    // console.log(this.data.region);
+  },
+  savePlace: function(e){
+    this.setData({
+      place: e.detail.value
+    })
+    // console.log(this.data.place);
+  },
+  logout: function(){
+    var _this=this;
+    wx.request({
+      url:'http://39.107.253.90:60001/wuser/insertwuser',
+      method: 'POST',
+      data:{
+        userId: 2,
+        detailedAddress: _this.data.place,
+        username: _this.data.name,
+      },
+      success: function(res){
+        console.log(res.data);
+      }
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.address = this.selectComponent("#address")
+    this.address.onon()
   },
 
   /**

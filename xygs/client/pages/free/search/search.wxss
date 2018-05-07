@@ -1,16 +1,15 @@
 /* pages/rich/search/search.wxss */
 page{
-  background: #f6f6f6;
+  background: #dfe0e2;
 }
 .search-box{
   display: flex;
-  margin-top: 20rpx;
   margin-left: 45rpx;
   align-items: center;
 }
 .searchbox{
-  height: 90rpx;
-  line-height: 90rpx;
+  height: 120rpx;
+  line-height: 120rpx;
   text-align: center;
   display: flex;
   align-items: center;
@@ -36,12 +35,18 @@ page{
 .btn-search::after{
    border: 6rpx solid #7fc7a1;
 }
+.allsearch{
+  display: flex;
+  flex-direction: column;
+  height: 480rpx;
+  background-color: #f5f5f5;
+}
 .history{
   display: flex;
   flex-direction: row;
   font-size: 32rpx;
   position: relative;
-  margin-top: 20rpx;
+  margin-top: 70rpx;
   margin-left: 45rpx;
   width: 660rpx;
 }
@@ -58,12 +63,11 @@ page{
       flex-direction: row;
 }
 .history-comm{
-      padding: 8rpx;
-      background: rgb(223,224,226);
+      background: #dfe0e2;
       margin-right: 16rpx;
       border-radius: 10rpx;
       font-size: 28rpx;
-      color: #333;
+      color: #828282;
 }
 .delete{
   position: absolute;
@@ -78,29 +82,30 @@ page{
 }
 .hot-search{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   font-size: 32rpx;
   color: #333333;
-  margin-left: 60rpx;
   margin-top: 16rpx;
-  width: 660rpx;
+ 
+}
+.col{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 90rpx;
+}
+.corns text{
+  display: inline-block;
+  margin-left:60rpx; 
 }
 .corns{
-  background: #e8e8e8;
+  background: #f5f5f5;
   height: 60rpx;
-  margin-right: 16rpx;
-  text-align: center;
+  text-align: left;
   line-height: 60rpx;
   border-radius: 8rpx;
   font-size: 28rpx;
-  color: #333;
+  color: #828282;
+  width: 50%
 }
-.corn{
-  width: 184rpx;
-}
-.cob{
-  width: 128rpx;
-}
-.wheat{
-  width: 100rpx;
-}
+

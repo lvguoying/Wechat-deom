@@ -5,11 +5,11 @@
       <view class='box'>邮箱</view>    
     </navigator>
   </view>
-  <view>
+  <!-- <view>
     <navigator url='setFax/setFax'>
       <view class='box'>传真</view>    
     </navigator>
-  </view>
+  </view> -->
   <view>
     <navigator url='setQQ/setQQ'>
       <view class='box'>QQ号码</view>    

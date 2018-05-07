@@ -10,13 +10,13 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-top: 80rpx;
   width: 100%;
 }
 .one,.continue,.receive{
   flex-flow: 1;
   font-size: 28rpx;
   background-color: #7fc7a1;
+  color: #fff;
 }
 
 .container-out {
@@ -92,4 +92,33 @@ box-shadow: inset 3px 3px 3px #fff2af;*/
   right: 0;
   height: 120rpx;
   width: 120rpx;
+}
+.prize-box{
+  position: relative;
+}
+.mine{
+  position: absolute;
+  top:-80rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 30rpx;
+}
+.prize-content{
+  display: flex;
+  justify-content: center;
+  color: #7fc7a1;
+  margin-top: 30rpx;
+}
+.prize-details{
+  display: flex;
+  justify-content: center;
+  color: black;
+}
+.prize-content view{
+  flex:1;
+  margin-left: 60rpx;
+}
+.prize-details view{
+  flex:1;
+  text-align: center;
 }

@@ -3,7 +3,7 @@
 
 .navbar {
   position: fixed;
-  z-index: 100;
+  z-index: 10;
   top: 0;
   left: 0;
   right: 0;
@@ -11,24 +11,27 @@
 
 /* glorylist start  */
 
-.detail .fontColor {
-  color: #c0c0c0;
+.varColor{
+  color: #777;
 }
 
-.detail .fontColor text {
-  color: #777;
+.detail .place {
+  color: black;
 }
 
 .detail .name {
   font-size: 32rpx;
+  flex: 1;
 }
 
 .detail .place {
   font-size: 28rpx;
+  color: black;
 }
 
 .detail .time {
   font-size: 26rpx;
+  flex: 1;
 }
 
 .scrollList {
@@ -40,15 +43,33 @@
 }
 
 .glorylist .flex-wrap {
-  display: -webkit-flex;
+  display: flex;
+}
+
+.regionPlace {
+  width: 750rpx;
+  margin-top: 25rpx;
+  height: 100rpx;
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
+
+.regionPlace image {
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  width: 60rpx;
+  height: 60rpx;
+}
+.regionPlace text{
+  font-size:32rpx; 
 }
 
 .glorylist .region {
+  height: 90rpx;
   width: 750rpx;
-  margin-bottom: 4rpx;
-  margin-top: 22rpx;
-  padding-bottom: 20rpx;
-  padding-top: 20rpx;
+
+
   background-color: white;
 }
 
@@ -57,28 +78,40 @@
   flex-direction: row;
   color: #333;
   font-size: 28rpx;
+  background-color:#F8F8F8; 
+    align-items: center;
+}
+
+.selectRegion image{
+  width: 180rpx;
+  height: 90rpx;
 }
 
 .selectRegion {
   line-height: 60rpx;
   margin-right: 8rpx;
-  margin-left: 8rpx;
+
 }
 
 .comm {
-  /* border: 1px solid #1aad19; */
+
   margin-right: 20rpx;
   border-radius: 10rpx;
   width: 180rpx;
   height: 60rpx;
-  line-height: 60rpx;
   text-align: center;
 }
+ .headPhoto {
+   border: 2rpx solid #777;
+  margin: 10rpx;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 100rpx; 
+}
+.name-wrap{
+  display: flex;
+  flex-direction:row; 
 
-.glorylist .headPhoto {
-  padding: 20rpx;
-  width: 130rpx;
-  height: 130rpx;
 }
 
 .glorylist .detail {
@@ -90,37 +123,32 @@
   flex: 1;
 }
 
-.glorylist .richBox {
-  margin-top: 22rpx;
+ .richBox {
+
   margin-bottom: 4rpx;
   background-color: white;
-  height: 190rpx;
+  height: 130rpx;
+  padding-top:20rpx;
+  padding-bottom:20rpx;  
 }
 
-/* .glorylist .richBox image{
-  padding:10rpx;
-} */
-
-/* glorylist end  */
-
-/* topbar  begin*/
 
 .navbar {
   flex: none;
   display: flex;
-  background: #fff;
-  color: black;
+  background: #7fc7a1;
+  color: #fff;
 }
 
 .navbar .item {
   position: relative;
-   flex: 2; 
+  flex: 2;
   text-align: center;
-  line-height: 80rpx;
+  line-height: 100rpx;
 }
 
 .navbar .item.active {
-  color: #7fc7a1;
+  color: #fff;
 }
 
 .navbar .item.active:after {
@@ -128,14 +156,25 @@
   display: block;
   position: absolute;
   bottom: 0;
-  left: 0;
+  left: 180rpx;
   right: 0;
-  height: 4rpx;
-  background: #7fc7a1;
+  width: 0;
+  height: 0;
+  border-left: 10rpx solid transparent;
+  border-right: 10rpx solid transparent;
+  border-bottom: 10rpx solid #fff;
 }
 
+.tabChange{
+  position: absolute;
+  top:140rpx;
+  left:30rpx;
+
+}
 /* topbar  end*/
 
 .myrich {
-  margin-top: 100rpx;
+  margin-top: 120rpx;
+  position: fixed;
+  z-index: 100;
 }

@@ -1,34 +1,33 @@
 <!--pages/free/exchange/exchange.wxml-->
-<view class='header'>积分兑换</view>
-<view class='current'>当前积分：200000</view>
-<view class="content">  
-    <view class='sum' bindtap='changeColor'>
-    <view class='product {{class}}'><text>华为手机\n(10000分)</text></view>
-    <image  class='phone' src='../../../mock/images/phone.jpg'></image>
-    </view>  
+<view class='header'>
+  <view class='header-left'>
+    <image class='person'     src='../../../mock/images/person.png'></image>
+    <view class='content-right'>
+      <view class='name'>李女士</view>
+      <view class='identity'>综合经营</view>
+    </view>
+  </view>
 
-    <view class='sum' bindtap='changeColor'>
-    <view class='product'><text>吹风机\n（3000分)</text></view>
-    <image  class='phone' src='../../../mock/images/phone.jpg'></image>
-    </view>  
+  <view class='header-right'>
+    <view class='mine'>我的积分</view>
+    <view class='total-integral'>
+      <image class='money' src='../../../mock/images/money.png'></image>
+      <view class='amount'>2000</view>
+    </view>
+  </view>
+</view>
 
-    <view class='sum' bindtap='changeColor'>
-    <view class='product'><text>电脑\n（20000分）</text></view>
-    <image  class='phone' src='../../../mock/images/phone.jpg'></image>
-    </view>  
+<view class='introduce' wx:for='{{array}}'>
+  <view class='gift'>
+  <image src='../../../mock/images/red.png'></image>
+  </view>
+    <view class='content'>
+      <view class='prize'>{{item.gift}}</view>
+      <view class='count'>{{item.count}}</view>
+      <view class='information'>{{item.information}}</view>
+    </view>
+      <view class='button'>
+        <navigator url='../address/address'>兑换</navigator>
+      </view>
+</view>
 
-    <view class='sum' bindtap='changeColor'>
-    <view class='product'><text>耳机\n（1000分）</text></view>
-    <image  class='phone' src='../../../mock/images/phone.jpg'></image>
-    </view>  
-
-    <view class='sum' bindtap='changeColor'>
-    <view class='product'><text>电视机\n（90000分）</text></view>
-    <image  class='phone' src='../../../mock/images/phone.jpg'></image>
-    </view>  
-
-    <view class='sum' bindtap='changeColor'>
-    <view class='product'><text>平衡车\n（80000分）</text></view>
-    <image  class='phone' src='../../../mock/images/phone.jpg'></image>
-    </view>  
-</view>  

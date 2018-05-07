@@ -1,7 +1,32 @@
 // pages/free/exchange/exchange.js
 Page({
   data:{
-    class: ''
+    array:[{
+      gift:'10元现金红包',
+      count:'1000积分',
+      information:'数量有限，兑完为止'
+    },
+    {
+      gift: '10元现金红包',
+      count: '1000积分',
+      information: '数量有限，兑完为止'
+    },
+    {
+      gift: '10元现金红包',
+      count: '1000积分',
+      information: '数量有限，兑完为止'
+    },
+    {
+      gift: '10元现金红包',
+      count: '1000积分',
+      information: '数量有限，兑完为止'
+    },
+    {
+      gift: '10元现金红包',
+      count: '1000积分',
+      information: '数量有限，兑完为止'
+    }
+    ]
   },
   toNavigate: function () {
     

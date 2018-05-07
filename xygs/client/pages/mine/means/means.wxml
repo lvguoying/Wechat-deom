@@ -1,7 +1,7 @@
 <view class='header' bindtap='goPhoto'>
   <view class='header-box box'>
     头像
-    <image class='mImg' src='../../../mock/images/rich/avatar.jpg'></image>
+    <image class='mImg' bindtap='getImg' src='../../../mock/images/rich/avatar.jpg'></image>
   </view>
 </view>
 

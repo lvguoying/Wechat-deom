@@ -1,6 +1,5 @@
 <!--pages/free/money/money.wxml-->
 <view class='container'>
-  <view class='price-draw'>积分抽奖</view>
   <view class='price-type'>
     <button class='one'>单次抽奖</button>
     <button class='continue'>连续抽奖</button>
@@ -16,8 +15,26 @@
   </view>
 </view>
 
-<navigator url='../address/address'>
+<view class='prize-box'>
+<view class='mine'>我的奖品</view>
+  <view class='prize-content'>
+  <view>奖项</view>
+  <view>获取时间</view>
+  <view>领取状态</view>
+  </view>
+
+  <view class='prize-details' wx:for='{{array}}'>
+    <view>{{item.prize}}</view>
+    <view>{{item.time}}</view>
+    <view>{{item.state}}</view>
+  </view>
+  
+</view>
+
+
+<navigator url='../address/address' hover-class='none'>
 <button class='receive'>领取奖品</button>
 </navigator>
 </view>
+
 

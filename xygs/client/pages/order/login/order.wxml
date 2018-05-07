@@ -1,0 +1,59 @@
+<!-- pages/order/order.wxml -->
+<!-- header start -->
+<view class="header">
+  <view class="header-left" bindtap="choice_cata">
+    <view class="section">
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{cata}}" custom-item="{{customItem}}">
+        <view class="img">
+          <image src="../../../mock/images/order/choice_cata.png"></image>
+        </view>
+        <view class="picker">{{cata[index]}}</view>
+      </picker>
+    </view>
+  </view>
+  <view class="header-right">
+    <view class="section">
+      <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+        <view class="img">
+          <image src="../../../mock/images/order/choice_region.png"></image>
+        </view>
+        <view class="picker">{{region[0]}}</view>
+      </picker>
+    </view>
+  </view>
+</view>
+<!-- header end -->
+<!-- order start -->
+<scroll-view class="order" scroll-y="ture">
+  <view class="order-message " wx:for="{{orderym}}">
+    <view class="order-header ">
+      <image src="../../../mock/images/order/dingdan.png"></image>
+      <text class="order-left">{{item.ym}}</text>
+      <view class="order-right">{{item.zl}}</view>
+    </view>
+    <view class="order-footer ">
+      <view class="footer-left">
+        <view>
+          <image src="../../../mock/images/order/diqu.png"></image>
+          <text>地 区 :</text>
+          <text class="meg">{{item.dq}}</text>
+        </view>
+        <view>
+          <image src="../../../mock/images/order/pinlei.png"></image>
+          <text>品 类 :</text>
+          <text class="meg">{{item.pl}}</text>
+        </view>
+        <view>
+          <image src="../../../mock/images/order/chanliang.png"></image>
+          <text>产 量 :</text>
+          <text class="meg">{{item.cl}}</text>
+        </view>
+      </view>
+      <view class="footer-right">
+        <button class="mini-btn" size="mini" type="primary" bindtap="showOrder" data-set="{{index}}">
+          查看详细
+        </button>
+      </view>
+    </view>
+  </view>
+</scroll-view>

@@ -8,27 +8,7 @@ Page({
    */
   data: {
     bol: 1,
-    blocks: [{
-      name: "玉米",
-      price: '1400',
-      brand: '黑土地',
-      address: '黑龙江省哈尔滨市...'
-    }, {
-      name: '红薯',
-      price: '200',
-      brand: '红薯',
-      address: '河北省唐山市...'
-    }, {
-      name: '苹果',
-      price: '155',
-      brand: '富士',
-      address: '山东省临沂市...'
-    }, {
-      name: '苹果',
-      price: '155',
-      brand: '富士',
-      address: '黑龙江省哈尔滨市...'
-    }]
+    blocks: []
   },
 
   /**
@@ -42,6 +22,18 @@ Page({
     var hour = date.getHours();
     var minute = date.getMinutes();
     var hourMinute = hour + ':' + minute;
+    // 发送请求
+    var that = this
+    wx.request({
+      url: util.APP_HOST + 'my/findfav',
+      method: 'get',
+      success: function (res) {
+        console.log(res.data.freeBusinessesList)
+        that.setData({
+          blocks: res.data.freeBusinessesList
+        })
+      }
+    })
     this.setData({
       time: time,
       hourMinute: hourMinute

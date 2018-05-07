@@ -1,3 +1,87 @@
-/* pages/mine/checkHistory/checkHistory.wxss */
-@import '../common/common.wxss';
-@import '../pubInfor/pubInfor.wxss';
+/* pages/nabi/navi.wxss */
+.touch-item {
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom:1px solid #ccc;
+    width: 100%;
+    overflow: hidden
+   }
+   .content {
+    width: 100%;
+    padding: 10px;
+    line-height: 22px;
+    margin-right:0;
+    transition: all 0.4s;
+    transform: translateX(90px);
+    margin-left: -90px
+   }
+   .del {
+    background-color: orangered;
+    width: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    -webkit-transform: translateX(90px);
+    transform: translateX(90px);
+    -webkit-transition: all 0.4s;
+    transition: all 0.4s;
+   }
+   .touch-move-active .content,
+   .touch-move-active .del {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+   }
+   /* 样式开始 */
+   .mesheader{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 100rpx;
+  }
+  .mctop,.mcmid,.mcbottom{
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+  }
+   .mcbottom{
+    display: flex;
+    align-items: center;
+  } 
+  .mcbright{
+    display: flex;
+    align-items: center;
+  }
+  .mes{
+    font-size: 28rpx;
+  }
+  .mestext{
+    font-size: 28rpx;
+    color:#8c8c8c;
+  }
+  .onlinebuy{
+    width: 218rpx;
+    height: 60rpx;
+  }
+  .personal,.realname,.time{
+    width: 36rpx;
+    height: 36rpx;
+    margin: 12rpx;
+  }
+  .time{
+    float: left;
+  }
+  
+  .tab-item { 
+  width: 33.3%; 
+  text-align: center; 
+  font-size: 15px; 
+  color: #777; 
+  } 
+  .iconsellbuy,
+  .icon-bprice{
+      width: 50rpx;
+      height: 50rpx;
+  }

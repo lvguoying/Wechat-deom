@@ -8,6 +8,8 @@ Page({
    */
   data: {
     bol:1,
+    businessesList: [],
+    filterList: [],
     blocks: [{
       name: "玉米",
       price: '1400',
@@ -35,18 +37,53 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // 调用函数时，传入new Date()参数，返回值是日期和时间  
-    var time = util.formatTime(new Date());
-    // 再通过setData更改Page()里面的data，动态更新页面的数据 
-    var date = new Date();
-    var hour = date.getHours();
-    var minute = date.getMinutes();
-    var hourMinute = hour + ':' + minute;
-    this.setData({
-      time: time,
-      hourMinute: hourMinute
+    // 显示加载中
+    wx.showLoading({
+      title: '加载中....'
+    }); 
+    var that = this;
+
+    // 加载数据
+    wx.request({
+      url: util.APP_HOST + 'freebusiness/findfreebus',
+      data: {},
+      success(res) {
+        console.log(res.data);
+        var filterList = res.data.freeBusinessesList.concat();
+        filterList.forEach(function(item) {
+          if(item.update_time){
+            item.update_time = item.update_time.split(" ")[0]
+          }else if(item.create_time){
+            item.create_time = item.create_time.split(" ")[0]
+          }
+        });
+        console.log(filterList);
+        that.setData({
+          businessesList: res.data.freeBusinessesList,
+          filterList
+        });
+        
+        // 隐藏Loading图标
+        wx.hideLoading();
+        
+      },
     });
-    console.log(this.data.hourMinute);
+
+
+
+
+    // 调用函数时，传入new Date()参数，返回值是日期和时间  
+    // var time = util.formatTime(new Date());
+    // 再通过setData更改Page()里面的data，动态更新页面的数据 
+    // var date = new Date();
+    // var hour = date.getHours();
+    // var minute = date.getMinutes();
+    // var hourMinute = hour + ':' + minute;
+    // this.setData({
+    //   time: time,
+    //   hourMinute: hourMinute
+    // });
+    // console.log(this.data.hourMinute);
   },
 
   /**

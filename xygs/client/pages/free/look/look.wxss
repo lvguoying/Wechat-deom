@@ -100,12 +100,15 @@
      width: 120rpx;
      height: 65rpx;
      border: 1px solid #7fc7a1;
-     border-radius: 6rpx;
+     border-radius: 8rpx;
      text-align: center;
      line-height: 65rpx;
      margin-right: 12rpx;
      color: #7fc7a1;
-     /* margin-left: 45px; */
+}
+.unit-selected{
+  background-color: #7fc7a1;
+  color: #fff;
 }
 .num, .price{
      margin-left: 45rpx;
@@ -115,6 +118,7 @@
      display: flex;
      flex-direction: row;
      margin-bottom: 40rpx;
+     color: #7fc7a1;
 }
 .range-comm{
      margin: 0 auto;
@@ -122,6 +126,7 @@
 }
 .range-comm input{
      border: 1px solid #7fc7a1;
+     border-radius: 8rpx;
      width: 200rpx;
      color: #7fc7a1
 }
@@ -137,7 +142,6 @@
      height: 50rpx;
      line-height: 50rpx;
      font-size: 34rpx;
-     border: 1px solid #c3c3c3;
      text-align: center;
      background: #7fc7a1;
      border-radius: 8rpx;
@@ -147,6 +151,10 @@
      margin-right: 50rpx;
      background: #ffffff;
      color: #7fc7a1;
+     width: 246rpx;
+     height: 46rpx;
+     line-height: 46rpx;
+     border: 2rpx solid #7fc7a1;
 }
 .message-buy,.message-sell{
   width: 100%;

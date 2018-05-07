@@ -8,10 +8,10 @@ view{
 }
 .intention{
   margin-top: 20rpx;
-  background-color: #fff;
   padding: 30rpx 40rpx;
   border-top: 2rpx solid #ccc;
-  border-bottom: 2rpx solid #ccc;  
+  border-bottom: 2rpx solid #ccc; 
+  background-color: #fff; 
 }
 .myButton{
   background-color: #1195db;
@@ -43,7 +43,7 @@ image{
 .image-wrapper view{
   display: inline-block;
 }
-.i-i-marks image{
+.i-g-marks image{
  vertical-align: middle;
 }
 /*intention-sponsor start*/
@@ -76,28 +76,38 @@ image{
   font-size: 46rpx;
 }
 /*intention-sponsor end*/
-/*intention-item start*/
-.i-i-title,.i-i-detail{
+/*intention-goods start*/
+.goods-in,.goods-out{
+  margin: 20rpx 0;
+  padding: 10rpx;
+  border-radius: 10rpx;
+  background-color: #f6f6f6;
+}
+.i-g-title,.i-g-detail{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
-.i-i-title{
+.i-g-title{
   border-bottom: 2rpx solid #ccc;
   margin-bottom: 20rpx;
 }
-.i-i-left{
+.i-g-left{
   flex-basis: 2;
 }
-.i-i-right{
+.i-g-right{
   flex-basis: 1;
+  text-align:right;
 }
-.i-i-name{
+.i-g-name{
   display: inline;
 }
-.i-i-price{
+.goods-in .i-g-price{
   color: #87c38f;
+}
+.goods-out .i-g-price{
+  color: #1195db;
 }
 .notice{
   font-size: 24rpx;
